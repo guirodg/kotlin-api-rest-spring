@@ -5,60 +5,10 @@ import br.com.alura.forum.model.Topico
 import br.com.alura.forum.model.Usuario
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Service
-class TopicoService(private var topicos: List<Topico>) {
-    init {
-        val topico = Topico(
-            id = 1,
-            titulo = "Duvida Kotlin",
-            mensagem = "Variaveis no Kotlin",
-            curso = Curso(
-                id = 1,
-                nome = "Kotlin",
-                categoria = "Programacao"
-            ),
-            autor = Usuario(
-                id = 1,
-                nome = "Ana da silva",
-                email = "ana@email.com"
-            )
-        )
-
-        val topico2 = Topico(
-            id = 2,
-            titulo = "Duvida Kotlin 2",
-            mensagem = "Variaveis no Kotlin 2",
-            curso = Curso(
-                id = 1,
-                nome = "Kotlin",
-                categoria = "Programacao"
-            ),
-            autor = Usuario(
-                id = 1,
-                nome = "Ana da silva",
-                email = "ana@email.com"
-            )
-        )
-
-        val topico3 = Topico(
-            id = 3,
-            titulo = "Duvida Kotlin 3",
-            mensagem = "Variaveis no Kotlin",
-            curso = Curso(
-                id = 1,
-                nome = "Kotlin",
-                categoria = "Programacao"
-            ),
-            autor = Usuario(
-                id = 1,
-                nome = "Ana da silva",
-                email = "ana@email.com"
-            )
-        )
-
-        topicos = Arrays.asList(topico, topico2, topico3)
-    }
+class TopicoService(private var topicos: List<Topico> = ArrayList()) {
 
     fun listar(): List<Topico> {
         return topicos
@@ -67,5 +17,9 @@ class TopicoService(private var topicos: List<Topico>) {
     fun buscarPorId(id: Long): Topico {
         return topicos.stream().filter { t -> t.id == id
         }.findFirst().get()
+    }
+
+    fun cadastrar(topico: Topico) {
+        topicos.plus(topico)
     }
 }
