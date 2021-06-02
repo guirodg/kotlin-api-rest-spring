@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.util.regex.Pattern.compile
 
 plugins {
 	id("org.springframework.boot") version "2.5.0"
@@ -23,6 +24,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	runtimeOnly("mysql:mysql-connector-java")
 }
 
 tasks.withType<KotlinCompile> {
